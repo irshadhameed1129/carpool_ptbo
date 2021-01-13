@@ -31,7 +31,7 @@ getAllpost = (e) => {
   }
 
 
-           axios.post('http://localhost:8080/searchPost/',dat).then(response =>{
+           axios.post('https://carpoolptbo.herokuapp.com/searchPost/',dat).then(response =>{
                      this.setState({posts : response.data})
                     console.log(response)
                     if(response.data.length === 0) {

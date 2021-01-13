@@ -50,7 +50,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
             }
             else {
                 
-                axios.get('http://localhost:8080/getPost/'+this.id+'/').then(response =>{
+                axios.get('https://carpoolptbo.herokuapp.com/getPost/'+this.id+'/').then(response =>{
                      this.setState({posts : response.data})
                     console.log(response.data)
                    
@@ -87,7 +87,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
             console.log(dat);
             
 
-            axios.post("http://localhost:8080/update/",dat)
+            axios.post("https://carpoolptbo.herokuapp.com/update/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
       console.log(response.data)
