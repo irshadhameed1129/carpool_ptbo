@@ -63,6 +63,7 @@ class  Career extends React.Component {
 
 else {
   axios.post("https://carpoolptbo.herokuapp.com/newPost/",dat)
+  // axios.post("http://localhost:8080/newPost/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
       console.log(response.status)

@@ -19,6 +19,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
                         pass:'',
                         mobile:'',
                         loading: true,
+                        key:''
             }
            
             if(sessionStorage.getItem('status')) {
@@ -38,7 +39,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
            
         }
         inputSet = (e) => {
-            console.log(e.target.name);
+            console.log(e.target.value);
             this.setState({[e.target.name] : e.target.value})
         } 
          componentDidMount() {
@@ -49,8 +50,8 @@ import {Scrollbars} from 'react-custom-scrollbars';
                 this.props.history.push("/login");
             }
             else {
-                
-                axios.get('https://carpoolptbo.herokuapp.com/getPost/'+this.id+'/').then(response =>{
+              axios.get('https://carpoolptbo.herokuapp.com/getPost/'+this.id+'/').then(response =>{
+                // axios.get('http://localhost:8080/getPost/'+this.id+'/').then(response =>{
                      this.setState({posts : response.data})
                     console.log(response.data)
                    
@@ -70,6 +71,26 @@ import {Scrollbars} from 'react-custom-scrollbars';
             this.props.history.push("/login");
           }
 
+
+          delete= (e)=>{
+            this.setState({[e.target.name] : e.target.value})
+            
+            console.log(e.target.value);
+            axios.post('https://carpoolptbo.herokuapp.com/delete/'+e.target.value+'/',).then(response =>{
+            // axios.post('http://localhost:8080/delete/'+e.target.value+'/',).then(response =>{
+             if(response.data === "Post Deleted") {
+              alert('Ride Deleted')
+              window.location.reload(false);
+             }else {
+              alert('Something Went Wrong')
+             }
+            
+         }).catch(error => {
+             console.log(error);
+         })
+           
+          }
+
           update = (e) => {
             e.preventDefault();
             var dat = {
@@ -86,7 +107,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
             }
             console.log(dat);
             
-
+            // axios.post("http://localhost:8080/update/",dat)
             axios.post("https://carpoolptbo.herokuapp.com/update/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
@@ -217,7 +238,7 @@ import {Scrollbars} from 'react-custom-scrollbars';
                             <td>{item.time}</td>
                             <td>${item.rate}</td>
                             <td>
-                            <Button variant="danger" type="submit" onClick={this.update} disabled >
+                            <Button variant="danger" type="submit" value = {item.id} name="key" onClick ={this.delete}    >
                                         Delete
                                         </Button> 
                             </td>

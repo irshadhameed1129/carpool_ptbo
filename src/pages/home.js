@@ -30,8 +30,12 @@ getAllpost = (e) => {
       
   }
 
-
-           axios.post('https://carpoolptbo.herokuapp.com/searchPost/',dat).then(response =>{
+  if (dat.startPlace ==='' || dat.endPlace==='' 
+ ) {
+    alert('Fill all Fields. Please...!')
+} else {
+  axios.post('https://carpoolptbo.herokuapp.com/searchPost/',dat).then(response =>{
+          //  axios.post('http://localhost:8080/searchPost/',dat).then(response =>{
                      this.setState({posts : response.data})
                     console.log(response)
                     if(response.data.length === 0) {
@@ -40,7 +44,7 @@ getAllpost = (e) => {
                    
                 })
 
-
+              }
   
 
 }
@@ -77,7 +81,7 @@ getAllpost = (e) => {
 </div> 
 <div style={{  display: `flex`, justifyContent: `center`  }}>
     <Scrollbars style={{  height: '20rem' , width:'65rem'}}>
-                        <Table striped bordered hover variant="light" style={{ }}>
+                        <Table striped bordered hover variant="dark" style={{ }}>
                      
                       
                         <tbody> 
