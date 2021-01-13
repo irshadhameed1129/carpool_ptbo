@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/carpool_ptbo/static/css/main.b4749b18.chunk.css",
+    "main.js": "/carpool_ptbo/static/js/main.4fed5876.chunk.js",
+    "main.js.map": "/carpool_ptbo/static/js/main.4fed5876.chunk.js.map",
+    "runtime-main.js": "/carpool_ptbo/static/js/runtime-main.8c2df6a9.js",
+    "runtime-main.js.map": "/carpool_ptbo/static/js/runtime-main.8c2df6a9.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "/carpool_ptbo/static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.2738550e.chunk.js": "/carpool_ptbo/static/js/2.2738550e.chunk.js",
+    "static/js/2.2738550e.chunk.js.map": "/carpool_ptbo/static/js/2.2738550e.chunk.js.map",
+    "index.html": "/carpool_ptbo/index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "/carpool_ptbo/static/css/2.20aa2d7b.chunk.css.map",
+    "static/css/main.b4749b18.chunk.css.map": "/carpool_ptbo/static/css/main.b4749b18.chunk.css.map",
+    "static/js/2.2738550e.chunk.js.LICENSE.txt": "/carpool_ptbo/static/js/2.2738550e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8c2df6a9.js",
+    "static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.2738550e.chunk.js",
+    "static/css/main.b4749b18.chunk.css",
+    "static/js/main.4fed5876.chunk.js"
+  ]
+}
