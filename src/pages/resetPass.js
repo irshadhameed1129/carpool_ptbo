@@ -38,7 +38,7 @@ import axios from 'axios';
         dat.pass === '' || dat.mobile === '' ) {
           alert('Fill all Fields. Please...!')
         }
-        else { axios.post("https://carpoolptbo.herokuapp.com/login/",dat)
+        else { axios.post("https://carpoolptbo.herokuapp.com/resetPass/",dat)
       //  else { axios.post("http://localhost:8080/resetPass",dat)
         .then(response=> {
           if(response.data.length !== 0) {
