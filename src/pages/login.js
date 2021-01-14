@@ -18,12 +18,9 @@ import axios from 'axios';
       }
 
 componentDidMount () {
-  if(!sessionStorage.getItem('status'))
-        console.log(sessionStorage.getItem("in did mount if "));
+  if(!sessionStorage.getItem('status')) {}
         
         else {
-          console.log("in esle statement");
-          // Redirect("/home");
          this.props.history.push("/userHome");
         }
 }
@@ -48,7 +45,6 @@ componentDidMount () {
     //  else { axios.post("http://localhost:8080/login",dat)
       .then(response=> {
         if(response.data.length !== 0) {
-          console.log("in axios login")
           sessionStorage.setItem("status", true );
           sessionStorage.setItem('user',JSON.stringify(response.data))
           this.props.history.push("/userHome");

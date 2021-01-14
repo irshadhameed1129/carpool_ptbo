@@ -38,7 +38,6 @@ class  Career extends React.Component {
 }
 
   inputSet = (e) => {
-    console.log(e.target.name);
     this.setState({[e.target.name] : e.target.value})
 } 
 
@@ -54,7 +53,6 @@ class  Career extends React.Component {
         user_id : this.state.user.id,
         rate: this.state.rate
     }
-    console.log(dat);
 
     if (dat.startPlace ==='' || dat.endPlace==='' || dat.rate==='' ||
         dat.time === '' || dat.date==='' || dat.user_id==='') {
@@ -66,7 +64,6 @@ else {
   // axios.post("http://localhost:8080/newPost/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
-      console.log(response.status)
       if(response.status === 200) {
         this.props.history.push("/userHome");
         
@@ -138,11 +135,7 @@ else {
         <Form.Control type="number" name="rate" value= {this.rate} required placeholder="$ Rate" onChange={this.inputSet} />
       </Form.Group>
   
-      {/* <Form.Group controlId="formBasicConfirmPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password"name="cpass" placeholder="Confirm Password"onChange={this.inputSet}  />
-      </Form.Group> */}
-  
+
   
     
       <Button variant="primary" type="submit" onClick={this.savePost}>

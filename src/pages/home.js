@@ -18,7 +18,6 @@ import axios from 'axios';
   }
 
   inputSet = (e) => {
-    console.log(e.target.name);
     this.setState({[e.target.name] : e.target.value})
 }
 
@@ -38,7 +37,6 @@ getAllpost = (e) => {
   axios.post('https://carpoolptbo.herokuapp.com/searchPost/',dat).then(response =>{
           //  axios.post('http://localhost:8080/searchPost/',dat).then(response =>{
                      this.setState({posts : response.data})
-                    console.log(response)
                     if(response.data.length === 0) {
                       alert('No Result Found')
                     } else {}

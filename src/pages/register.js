@@ -17,7 +17,6 @@ class register extends Component {
   }
 
   inputSet = (e) => {
-    console.log(e.target.name);
     this.setState({[e.target.name] : e.target.value})
 } 
 saveUser = (e) => {
@@ -38,7 +37,6 @@ saveUser = (e) => {
       // axios.post("http://localhost:8080/registration/",dat)
       .then(response=> {
         // this.setState({messege : response.status});
-        console.log(response.status)
         if(response.data.length !== 0) {
           this.props.history.push("/Home");
           

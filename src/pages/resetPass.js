@@ -19,7 +19,6 @@ import axios from 'axios';
 
 
       inputSet = (e) => {
-        console.log(this.state.pass);
         this.setState({[e.target.name] : e.target.value})
     } 
   
@@ -42,7 +41,6 @@ import axios from 'axios';
         else { axios.post("https://carpoolptbo.herokuapp.com/login/",dat)
       //  else { axios.post("http://localhost:8080/resetPass",dat)
         .then(response=> {
-            console.log(response.data)
           if(response.data.length !== 0) {
             this.props.history.push("/home");
            

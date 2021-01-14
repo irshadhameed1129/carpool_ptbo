@@ -39,7 +39,6 @@ import {Scrollbars} from 'react-custom-scrollbars';
            
         }
         inputSet = (e) => {
-            console.log(e.target.value);
             this.setState({[e.target.name] : e.target.value})
         } 
          componentDidMount() {
@@ -53,7 +52,6 @@ import {Scrollbars} from 'react-custom-scrollbars';
               axios.get('https://carpoolptbo.herokuapp.com/getPost/'+this.id+'/').then(response =>{
                 // axios.get('http://localhost:8080/getPost/'+this.id+'/').then(response =>{
                      this.setState({posts : response.data})
-                    console.log(response.data)
                    
                 }).catch(error => {
                     console.log(error);
@@ -67,7 +65,6 @@ import {Scrollbars} from 'react-custom-scrollbars';
         logout= (e)=>{
             sessionStorage.removeItem('status');
             sessionStorage.removeItem('user');
-            console.log(sessionStorage.getItem('status'));
             this.props.history.push("/login");
           }
 
@@ -75,7 +72,6 @@ import {Scrollbars} from 'react-custom-scrollbars';
           delete= (e)=>{
             this.setState({[e.target.name] : e.target.value})
             
-            console.log(e.target.value);
             axios.post('https://carpoolptbo.herokuapp.com/delete/'+e.target.value+'/',).then(response =>{
             // axios.post('http://localhost:8080/delete/'+e.target.value+'/',).then(response =>{
              if(response.data === "Post Deleted") {
@@ -105,13 +101,11 @@ import {Scrollbars} from 'react-custom-scrollbars';
                 mobile: this.state.mobile
             
             }
-            console.log(dat);
             
             // axios.post("http://localhost:8080/update/",dat)
             axios.post("https://carpoolptbo.herokuapp.com/update/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
-      console.log(response.data)
       if(response.status === 200) {
         alert('Profile Updated')
         // this.props.history.push("/Home");
