@@ -67,6 +67,15 @@
     
     
   }
+  .App{
+
+    background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.canadianunderwriter.ca%2Fuploads%2F2018%2F02%2FiStock-852475554.jpg&imgrefurl=https%3A%2F%2Fwww.canadianunderwriter.ca%2Finsurance%2Fcoalition-launches-campaign-bring-ride-hailing-province-1004127111%2Fattachment%2Frideshare-taxi-app-on-smartphone-screen-online-ride-sharing-and-carpool-mobile-application-modern-people-and-commuter-transportation-service-man-holding-phone-with-a-car-in-background-3%2F&tbnid=T-issoQEAaVn-M&vet=12ahUKEwiS1dOOlpruAhVjja0KHUVgDFwQMygNegUIARDVAQ..i&docid=v7-qtSJNNo0AyM&w=725&h=482&itg=1&q=background%20images%20for%20carpool%20website&ved=2ahUKEwiS1dOOlpruAhVjja0KHUVgDFwQMygNegUIARDVAQ");
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
   
   .card-2 {
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

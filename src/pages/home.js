@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Button, Card,Table} from "react-bootstrap";
+import {Form, Button, Card,Table, Alert} from "react-bootstrap";
 import {Scrollbars} from 'react-custom-scrollbars';
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ import axios from 'axios';
       posts :[],
       startPlace:'',
       endPlace:'',
+      show: true
 
     }
   }
@@ -40,14 +41,13 @@ getAllpost = (e) => {
                     console.log(response)
                     if(response.data.length === 0) {
                       alert('No Result Found')
-                    }
-                   
+                    } else {}
                 })
 
               }
-  
-
 }
+
+
 
 
 
@@ -81,33 +81,31 @@ getAllpost = (e) => {
 </div> 
 <div style={{  display: `flex`, justifyContent: `center`  }}>
     <Scrollbars style={{  height: '20rem' , width:'65rem'}}>
-                        <Table striped bordered hover variant="dark" style={{ }}>
-                     
-                      
-                        <tbody> 
+
+
                         {this.state.posts.sort((a, b) => a.date < b.date ? 1 : -1)
+                      
+                      .map((item,key) =>{
+                          return ( 
+                            <Alert variant="success"     >
+                            <Alert.Heading>Result Found on your search</Alert.Heading>
                         
-                        .map((item,key) =>{
-                            return ( 
-                            
-                          <tr>
-                          
-                            <td>Driver: {item.fname}</td>
-                            <td>Date: {item.date}</td>
-                            <td>From: {item.startPlace}</td>
-                            <td>To : {item.endPlace}</td>
-                            <td>Time: {item.time}</td>
-                            <td>Contact: {item.mobile}</td>
-                            <td>Rate: ${item.rate}</td>
-                            <td>
-                          
-                            </td>
-                          </tr>
-                          )
-                            })}
-                        </tbody>
                         
-                      </Table>
+                          Driver: {item.fname} {" "}
+                          Date: {item.date}  {" "}
+                          From: {item.startPlace} {" "}
+                          To : {item.endPlace} {" "}
+                          Time: {item.time} {" "}
+                          Contact: {item.mobile} {" "}
+                          Rate: ${item.rate}
+                          
+                        
+                          
+                        
+                        </Alert>
+                        )
+                          })}
+
                       </Scrollbars>
 
   

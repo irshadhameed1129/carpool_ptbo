@@ -94,7 +94,8 @@ componentDidMount () {
   </Form>
 
   </Card.Text>
-      <Card.Link href="/register">Create New Account?</Card.Link>
+      <Card.Link href="/register">Need New Account?</Card.Link>
+      <Card.Link href="/resetPass">Forgot Password?</Card.Link>
     </Card.Body>
   </Card>
 

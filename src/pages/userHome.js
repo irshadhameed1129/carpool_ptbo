@@ -208,7 +208,8 @@ import {Scrollbars} from 'react-custom-scrollbars';
             
                   
                   <Scrollbars style={{  height: '50rem' }}>
-                        <Table striped bordered hover size="sm">
+                        <Table variant="flush" striped bordered hover size="sm">
+                          
                         <thead>
                           <tr>
                             <th>Ref</th>

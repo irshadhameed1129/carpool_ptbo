@@ -118,7 +118,7 @@ saveUser = (e) => {
         </Card.Text>
         <Card.Link href="/login">Already Registered?</Card.Link>
         <Form.Text className="text-muted">
-          I Accepted Term & Condition. 
+          I Accepted Terms & Condition. 
         </Form.Text>
       </Card.Body>
     </Card>
