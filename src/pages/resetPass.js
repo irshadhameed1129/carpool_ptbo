@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Card} from "react-bootstrap";
+import {Form, Button, Spinner,Card} from "react-bootstrap";
 import axios from 'axios';
 
  class resetPass extends Component {
@@ -12,7 +12,8 @@ import axios from 'axios';
         
           email: '',
           pass: '',
-          mobile:''
+          mobile:'',
+          loading: true
         }
     
       }
@@ -38,14 +39,20 @@ import axios from 'axios';
         dat.pass === '' || dat.mobile === '' ) {
           alert('Fill all Fields. Please...!')
         }
-        else { axios.post("https://carpoolptbo.herokuapp.com/resetPass/",dat)
+        else { 
+          
+          this.setState({loading: false});
+          axios.post("https://carpoolptbo.herokuapp.com/resetPass/",dat)
       //  else { axios.post("http://localhost:8080/resetPass",dat)
         .then(response=> {
           if(response.data.length !== 0) {
-            this.props.history.push("/home");
+            this.setState({loading: true});
+            alert('Password successfully');
+            this.props.history.push("/login");
            
           }
           else  if(response.data.length === 0) {
+            this.setState({loading: true});
             alert('Invalid Email or Password')
           }
            else {
@@ -86,6 +93,9 @@ import axios from 'axios';
     <Button variant="primary" type="submit" onClick={this.resetPassword}>
       Reset
     </Button>
+
+    {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border"  /></div></>}
+
   </Form>
 
   </Card.Text>

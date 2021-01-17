@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Button, Card,Table, Alert} from "react-bootstrap";
+import {Form,Spinner, Button, Card, Alert} from "react-bootstrap";
 import {Scrollbars} from 'react-custom-scrollbars';
 import axios from 'axios';
 
@@ -12,7 +12,8 @@ import axios from 'axios';
       posts :[],
       startPlace:'',
       endPlace:'',
-      show: true
+      show: true,
+      loading: true
 
     }
   }
@@ -34,13 +35,22 @@ getAllpost = (e) => {
  ) {
     alert('Fill all Fields. Please...!')
 } else {
+  this.setState({loading: false});
+  
   axios.post('https://carpoolptbo.herokuapp.com/searchPost/',dat).then(response =>{
+
+  
           //  axios.post('http://localhost:8080/searchPost/',dat).then(response =>{
                      this.setState({posts : response.data})
                     if(response.data.length === 0) {
+                      this.setState({loading: true});
                       alert('No Result Found')
-                    } else {}
-                })
+                    } else {
+                      this.setState({loading: true});
+                      alert( response.data.length+' Data found on your Search');
+                    }
+                }
+                )
 
               }
 }
@@ -55,6 +65,7 @@ getAllpost = (e) => {
       <div  style={{  display: `flex`, justifyContent: `center`  }}> 
       <Card  style={{ width: '30rem'  }}>
       <Card.Body>
+      
       <Card.Subtitle className="mb-2 text-muted text-center" style={{ fontSize:'30px'  }} >CarPool PTBO</Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted text-center"  >Find Your Ride</Card.Subtitle>
         <Card.Text>
@@ -72,6 +83,8 @@ getAllpost = (e) => {
       <Button variant="primary" type="submit" onClick={this.getAllpost}>
         Search
       </Button>
+      {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+
     </Form>
     </Card.Text>
       </Card.Body>
@@ -86,7 +99,7 @@ getAllpost = (e) => {
                       .map((item,key) =>{
                           return ( 
                             <Alert variant="success"     >
-                            <Alert.Heading>Result Found on your search</Alert.Heading>
+                            
                         
                         
                           Driver: {item.fname} {" "}

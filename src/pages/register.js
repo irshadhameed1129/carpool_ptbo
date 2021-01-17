@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Card} from "react-bootstrap";
+import {Form,Alert, Button, Card, Spinner} from "react-bootstrap";
 import axios from 'axios';
 class register extends Component {
   constructor() {
@@ -11,7 +11,8 @@ class register extends Component {
       email: '',
       pass: '',
       cpass: '',
-      mobile : ""
+      mobile : "",
+      loading: true
     }
 
   }
@@ -21,29 +22,41 @@ class register extends Component {
 } 
 saveUser = (e) => {
     e.preventDefault();
+   
     var dat = {
         lname :this.state.lname,
         fname :this.state.fname,
         email :this.state.email,
         pass :this.state.pass,
-        mobile: this.state.mobile
+        mobile: this.state.mobile,
+        cpass: this.state.mobile,
     }
 
     if (dat.lname ==='' || dat.fname==='' || dat.email==='' ||
     dat.pass === '' || dat.mobile==='' ) {
       alert('Fill all Fields. Please...!')
-    } else {
+    } else if(dat.pass !== dat.cpass) {
+      alert('Password & Confirm Password are not Matching. Try again');
+    }
+    
+    else
+    
+    {
+      this.setState({loading: false});
       axios.post("https://carpoolptbo.herokuapp.com/registration/",dat)
       // axios.post("http://localhost:8080/registration/",dat)
       .then(response=> {
         // this.setState({messege : response.status});
         if(response.data.length !== 0) {
-          this.props.history.push("/Home");
+          this.setState({loading: true});
+          alert('User Registration Successfully Completed');
+          this.props.history.push("/login");
           
         }
-         else if(response.data.length === 0)
-            alert('Email Address Already Exist......!')
-            else 
+         else if(response.data.length === 0) {
+            alert('Email Address Already Exist......!');
+            this.setState({loading: true});
+         }else 
             alert('Server Not Responding')
       })
     }
@@ -55,7 +68,10 @@ saveUser = (e) => {
 
 
   render() {
+    
+ 
     return (
+   
       <div style={{  display: `flex`, justifyContent: `center` }}>
       <Card  border="primary" style={{ width: '30rem' }}>
       <Card.Header   className="mb-2 text-muted text-center font-size: 15px" >CarPool PTBO
@@ -100,6 +116,10 @@ saveUser = (e) => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name="pass"  placeholder="Password" onChange={this.inputSet} />
       </Form.Group>
+      <Form.Group controlId="formBasicPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control type="password" name="cpass"  placeholder="Confirm Password" onChange={this.inputSet} />
+      </Form.Group>
   
       {/* <Form.Group controlId="formBasicConfirmPassword">
         <Form.Label>Confirm Password</Form.Label>
@@ -111,6 +131,8 @@ saveUser = (e) => {
       <Button variant="primary" type="submit" onClick={this.saveUser} >
         Sign Up
       </Button>
+      {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+      
     </Form>
   
         </Card.Text>
@@ -121,6 +143,7 @@ saveUser = (e) => {
       </Card.Body>
     </Card>
     </div>
+
     )
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Card} from "react-bootstrap";
+import {Form, Button, Card,Spinner} from "react-bootstrap";
 import axios from 'axios';
  class login extends Component {
 
@@ -13,6 +13,7 @@ import axios from 'axios';
           errorMessage : "",
           user: {},
           redirect:'/userHome',
+          loading: true
         }
     
       }
@@ -41,10 +42,13 @@ componentDidMount () {
       dat.pass === '' ) {
         alert('Fill all Fields. Please...!')
       }
-      else { axios.post("https://carpoolptbo.herokuapp.com/login/",dat)
+      else { 
+        this.setState({loading: false});
+        axios.post("https://carpoolptbo.herokuapp.com/login/",dat)
     //  else { axios.post("http://localhost:8080/login",dat)
       .then(response=> {
         if(response.data.length !== 0) {
+          this.setState({loading: true});
           sessionStorage.setItem("status", true );
           sessionStorage.setItem('user',JSON.stringify(response.data))
           this.props.history.push("/userHome");
@@ -52,6 +56,7 @@ componentDidMount () {
         }
         else  if(response.data.length === 0) {
           alert('Invalid Email or Password')
+          this.setState({loading: true});
         }
          else {
             this.setState({errorMessage : "Invalid Email or Password. Try again Later"});
@@ -87,6 +92,8 @@ componentDidMount () {
     <Button variant="primary" type="submit" onClick={this.validateUser}>
       Submit
     </Button>
+    {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+      
   </Form>
 
   </Card.Text>

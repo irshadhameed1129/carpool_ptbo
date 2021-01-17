@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Card , Button} from "react-bootstrap";
+import { Form, Card ,Spinner, Button} from "react-bootstrap";
 import axios from 'axios';
 
 
@@ -16,7 +16,7 @@ class  Career extends React.Component {
     date:'',
     time:'',
     rate:'',
-    
+    loading: true
   }
   if(sessionStorage.getItem('status')) {
     this.state.user = JSON.parse(sessionStorage.getItem('user'));
@@ -60,15 +60,19 @@ class  Career extends React.Component {
     }
 
 else {
+  this.setState({loading: false});
   axios.post("https://carpoolptbo.herokuapp.com/newPost/",dat)
   // axios.post("http://localhost:8080/newPost/",dat)
     .then(response=> {
       // this.setState({messege : response.status});
       if(response.status === 200) {
+        this.setState({loading: true});
+        alert('New Post Created')
         this.props.history.push("/userHome");
         
       }
        else
+       this.setState({loading: true});
           alert('Sorry Something went wrong. Try again Later')
     })
 }
@@ -141,6 +145,9 @@ else {
       <Button variant="primary" type="submit" onClick={this.savePost}>
         Create
       </Button>
+
+      {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+
     </Form>
   
         </Card.Text>
