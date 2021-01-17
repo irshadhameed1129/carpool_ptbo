@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Career from './pages/career';
+import About from './pages/about';
 // import Career from './pages/services';
 import Login from './pages/login';
 import Register from './pages/register';
@@ -38,6 +39,7 @@ import ResetPass from './pages/resetPass'
        <Route path='/register' component={Register} />
        <Route path='/userHome' component ={UserHome}/>
        <Route path='/resetPass' component ={ResetPass}/>
+       <Route path='/about' component ={About}/>
        {/* <Link to="/userHome">Login</Link> */}
      
     </Switch>

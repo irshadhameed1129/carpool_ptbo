@@ -20,7 +20,8 @@ export default class NavBar extends Component {
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
               {/* <Nav.Link href="/career">Career</Nav.Link> */}
-              <Nav.Link href="/login">Profile</Nav.Link>
+              <Nav.Link href="/login">Driver's Profile</Nav.Link>
+              <Nav.Link href="/about">Our Mission</Nav.Link>
               {/* <Nav.Link href="/userHome"></Nav.Link> */}
             </Nav>
           </Navbar>

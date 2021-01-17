@@ -92,7 +92,7 @@ componentDidMount () {
     <Button variant="primary" type="submit" onClick={this.validateUser}>
       Submit
     </Button>
-    {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+    {this.state.loading ? <div></div> : <>  <div><br></br> <Spinner animation="border"  /> Please Wait......!   </div></>}
       
   </Form>
 

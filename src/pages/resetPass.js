@@ -12,6 +12,7 @@ import axios from 'axios';
         
           email: '',
           pass: '',
+          cpass:'',
           mobile:'',
           loading: true
         }
@@ -32,6 +33,7 @@ import axios from 'axios';
   
              pass :this.state.pass,
             email :this.state.email,
+            cpass :this.state.cpass,
             mobile :this.state.mobile
             
         }
@@ -39,7 +41,9 @@ import axios from 'axios';
         dat.pass === '' || dat.mobile === '' ) {
           alert('Fill all Fields. Please...!')
         }
-        else { 
+        else if(dat.pass !== dat.cpass) {
+          alert('Password & Confirm Password are not Matching. Try again');
+        } else {
           
           this.setState({loading: false});
           axios.post("https://carpoolptbo.herokuapp.com/resetPass/",dat)
@@ -60,7 +64,8 @@ import axios from 'axios';
            }
           
             })
-          }
+          
+        }
         }
     
     render() {
@@ -90,11 +95,16 @@ import axios from 'axios';
       <Form.Label>New Password</Form.Label>
       <Form.Control type="password" name="pass" placeholder="New Password"  required onChange={this.inputSet}/>
     </Form.Group>
+
+    <Form.Group controlId="formBasicPassword">
+      <Form.Label>Confirm Password</Form.Label>
+      <Form.Control type="password" name="cpass" placeholder="Confirm Password"  required onChange={this.inputSet}/>
+    </Form.Group>
     <Button variant="primary" type="submit" onClick={this.resetPassword}>
       Reset
     </Button>
 
-    {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border"  /></div></>}
+    {this.state.loading ? <div></div> : <>  <div><br></br> <Spinner animation="border"  /> Please Wait......!   </div></>}
 
   </Form>
 

@@ -29,7 +29,7 @@ saveUser = (e) => {
         email :this.state.email,
         pass :this.state.pass,
         mobile: this.state.mobile,
-        cpass: this.state.mobile,
+        cpass: this.state.cpass,
     }
 
     if (dat.lname ==='' || dat.fname==='' || dat.email==='' ||
@@ -131,7 +131,7 @@ saveUser = (e) => {
       <Button variant="primary" type="submit" onClick={this.saveUser} >
         Sign Up
       </Button>
-      {this.state.loading ? <div></div> : <>  <div><br></br>  <Spinner animation="border" variant="success" /></div></>}
+      {this.state.loading ? <div></div> : <>  <div><br></br> <Spinner animation="border"  /> Please Wait......!   </div></>}
       
     </Form>
   
